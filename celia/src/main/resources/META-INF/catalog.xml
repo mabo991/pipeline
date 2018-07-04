@@ -10,6 +10,7 @@
   <uri name="http://www.celia.fi/pipeline/modules/braille/default.scss"
        uri="../css/celia-default.scss"/>
   <!-- dependencies -->
+  <nextCatalog catalog="org:daisy:pipeline:modules:braille:common-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:css-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:liblouis-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:liblouis-tables"/>

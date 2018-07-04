@@ -14,24 +14,16 @@ import net.davidashen.text.Utf8TexParser.TexParserException;
 import static org.daisy.pipeline.braille.common.Query.util.query;
 import org.daisy.pipeline.braille.libhyphen.LibhyphenHyphenator;
 import org.daisy.pipeline.braille.tex.TexHyphenator;
+import org.daisy.pipeline.junit.AbstractTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assume.assumeTrue;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.junit.BeforeClass;
-
-import org.ops4j.pax.exam.Configuration;
-import org.ops4j.pax.exam.junit.PaxExam;
-import org.ops4j.pax.exam.Option;
-import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
-import org.ops4j.pax.exam.spi.reactors.PerClass;
 
 import org.osgi.framework.BundleContext;
 
-@RunWith(PaxExam.class)
-@ExamReactorStrategy(PerClass.class)
-public class HyphenationTest {
+public class HyphenationTest extends AbstractTest {
 	
 	static ArrayList<String[]> testCases;
 	
@@ -92,8 +84,8 @@ public class HyphenationTest {
 		}
 	}
 	
-	@Configuration
-	public Option[] config() {
-		return Config.config();
+	@Override
+	protected String[] testDependencies() {
+		return Config.testDependencies();
 	}
 }

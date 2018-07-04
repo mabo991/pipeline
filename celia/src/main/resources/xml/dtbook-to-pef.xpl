@@ -124,7 +124,7 @@
 
 
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/library.xpl"/>
-    <p:import href="http://www.daisy.org/pipeline/modules/braille/xml-to-pef/library.xpl"/>
+    <p:import href="http://www.daisy.org/pipeline/modules/braille/common-utils/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/file-utils/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/common-utils/library.xpl"/>
     <p:import href="http://www.celia.fi/pipeline/modules/braille/library.xpl"/>
@@ -202,18 +202,15 @@
     <!-- ========= -->
     <!-- STORE PEF -->
     <!-- ========= -->
-    <px:xml-to-pef.store>
-      <p:input port="obfl">
-        <p:empty/>
-      </p:input>
-      <p:with-option name="name" select="replace(p:base-uri(/),'^.*/([^/]*)\.[^/\.]*$','$1')">
+    <px:dtbook-to-pef.store>
+      <p:input port="dtbook">
         <p:pipe step="main" port="source"/>
-      </p:with-option>
+      </p:input>
       <p:with-option name="include-brf" select="$include-brf"/>
       <p:with-option name="include-preview" select="$include-preview"/>
       <p:with-option name="pef-output-dir" select="$pef-output-dir"/>
       <p:with-option name="brf-output-dir" select="$brf-output-dir"/>
       <p:with-option name="preview-output-dir" select="$preview-output-dir"/>
-    </px:xml-to-pef.store>
+    </px:dtbook-to-pef.store>
 
 </p:declare-step>

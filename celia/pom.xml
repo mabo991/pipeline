@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.daisy.pipeline.modules.braille</groupId>
     <artifactId>braille-modules-parent</artifactId>
-    <version>1.10.0</version>
+    <version>1.11.1-SNAPSHOT</version>
     <relativePath />
   </parent>
 
@@ -15,6 +15,18 @@
   <packaging>bundle</packaging>
 
   <name>DP2 Braille Modules :: mod-celia</name>
+  
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.daisy.pipeline.modules</groupId>
+        <artifactId>scripts-bom</artifactId>
+        <version>1.11.1-SNAPSHOT</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   
   <dependencies>
     <dependency>
@@ -40,6 +52,11 @@
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
       <artifactId>dtbook-to-pef</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.compendium</artifactId>
+      <scope>provided</scope>
     </dependency>
     <!--
         runtime dependencies
@@ -85,35 +102,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.daisy.maven</groupId>
-      <artifactId>xproc-engine-daisy-pipeline</artifactId>
+      <groupId>org.daisy.pipeline.build</groupId>
+      <artifactId>modules-test-helper</artifactId>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.daisy.xprocspec</groupId>
-      <artifactId>xprocspec</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.daisy.maven</groupId>
-      <artifactId>xprocspec-runner</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-jdk14</artifactId>
-      <version>1.7.2</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.daisy.pipeline</groupId>
-      <artifactId>pax-exam-helper</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.compendium</artifactId>
-      <scope>provided</scope>
     </dependency>
   </dependencies>
 
@@ -124,7 +115,7 @@
         <excludes>
           <exclude>hyph/hyph-fi</exclude>
           <!--
-              braille-modules-parent
+              modules-parent
           -->
           <exclude>META-INF/catalog.xml</exclude>
         </excludes>
@@ -134,14 +125,6 @@
         <includes>
           <include>hyph/hyph-fi.dic</include>
           <include>hyph/hyph-fi.tex</include>
-          <!--
-              braille-modules-parent
-          -->
-          <include>META-INF/catalog.xml</include>
-          <include>generated-scripts</include>
-          <include>generated-scripts/*</include>
-          <include>data-types</include>
-          <include>data-types/**/*</include>
         </includes>
       </resource>
     </resources>
@@ -207,7 +190,7 @@
           <instructions>
             <_dsannotations>
               fi.celia.pipeline.braille.impl.CeliaTranslator$Provider,
-	      fi.celia.pipeline.braille.impl.TablePath,
+              fi.celia.pipeline.braille.impl.TablePath,
               fi.celia.pipeline.braille.impl.LibhyphenTablePath,
               fi.celia.pipeline.braille.impl.TexHyphenatorTablePath
             </_dsannotations>

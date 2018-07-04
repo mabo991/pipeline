@@ -1,46 +1,22 @@
-import static org.daisy.pipeline.pax.exam.Options.brailleModule;
-import static org.daisy.pipeline.pax.exam.Options.calabashConfigFile;
-import static org.daisy.pipeline.pax.exam.Options.domTraversalPackage;
-import static org.daisy.pipeline.pax.exam.Options.felixDeclarativeServices;
-import static org.daisy.pipeline.pax.exam.Options.logbackClassic;
-import static org.daisy.pipeline.pax.exam.Options.logbackConfigFile;
-import static org.daisy.pipeline.pax.exam.Options.mavenBundle;
-import static org.daisy.pipeline.pax.exam.Options.mavenBundlesWithDependencies;
-import static org.daisy.pipeline.pax.exam.Options.pipelineModule;
-import static org.daisy.pipeline.pax.exam.Options.thisBundle;
-import static org.daisy.pipeline.pax.exam.Options.xprocspec;
-
-import org.ops4j.pax.exam.Option;
-
-import static org.ops4j.pax.exam.CoreOptions.junitBundles;
-import static org.ops4j.pax.exam.CoreOptions.options;
+import static org.daisy.pipeline.pax.exam.Options.thisPlatform;
 
 public class Config {
-	
-	public static Option[] config() {
-		return options(
-			logbackConfigFile(),
-			domTraversalPackage(),
-			felixDeclarativeServices(),
-			calabashConfigFile(),
-			thisBundle(),
-			junitBundles(),
-			mavenBundlesWithDependencies(
-				brailleModule("common-utils"),
-				brailleModule("css-utils"),
-				brailleModule("liblouis-utils"),
-				brailleModule("liblouis-tables"),
-				brailleModule("liblouis-native").forThisPlatform(),
-				brailleModule("libhyphen-core"),
-				brailleModule("libhyphen-native").forThisPlatform(),
-				brailleModule("texhyph-core"),
-				brailleModule("pef-utils"),
-				brailleModule("dotify-utils"),
-				brailleModule("dotify-formatter"),
-				brailleModule("dtbook-to-pef"),
-				logbackClassic(),
-				xprocspec(),
-				mavenBundle("org.daisy.maven:xproc-engine-daisy-pipeline:?"))
-			);
+	static String[] testDependencies() {
+		return new String[] {
+			"org.daisy.pipeline.modules.braille:common-utils:?",
+			"org.daisy.pipeline.modules.braille:css-utils:?",
+			"org.daisy.pipeline.modules.braille:liblouis-utils:?",
+			"org.daisy.pipeline.modules.braille:liblouis-tables:?",
+			"org.daisy.pipeline.modules.braille:liblouis-native:jar:" + thisPlatform() + ":?",
+			"org.daisy.pipeline.modules.braille:libhyphen-core:?",
+			"org.daisy.pipeline.modules.braille:libhyphen-native:jar:" + thisPlatform() + ":?",
+			"org.daisy.pipeline.modules.braille:texhyph-core:?",
+			"org.daisy.pipeline.modules.braille:pef-utils:?",
+			"org.daisy.pipeline.modules.braille:dotify-utils:?",
+			"org.daisy.pipeline.modules.braille:dotify-formatter:?",
+			"org.daisy.pipeline.modules.braille:dtbook-to-pef:?",
+			// FIXME: Dotify needs older version of jing
+			"org.daisy.libs:jing:20120724.0.0",
+		};
 	}
 }
