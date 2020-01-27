@@ -114,6 +114,14 @@
         <artifactId>javafx-fxml</artifactId>
         <version>${javafx.version}</version>
       </dependency>
+      <!--
+          Celia module
+      -->
+      <dependency>
+        <groupId>org.daisy.pipeline.modules.braille</groupId>
+        <artifactId>mod-celia</artifactId>
+        <version>1.5.1-SNAPSHOT</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <build>
@@ -1195,6 +1203,13 @@
                 <artifactItem>
                   <groupId>org.daisy.pipeline.modules.braille</groupId>
                   <artifactId>zedai-to-pef</artifactId>
+                </artifactItem>
+                <!--
+                    Celia modules
+                -->
+                <artifactItem>
+                  <groupId>org.daisy.pipeline.modules.braille</groupId>
+                  <artifactId>mod-celia</artifactId>
                 </artifactItem>
               </artifactItems>
             </configuration>
