@@ -4,9 +4,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.daisy.pipeline.modules.braille</groupId>
-    <artifactId>braille-modules-parent</artifactId>
-    <version>1.11.1-SNAPSHOT</version>
+    <groupId>org.daisy.pipeline.modules</groupId>
+    <artifactId>modules-parent</artifactId>
+    <version>1.13.1</version>
     <relativePath />
   </parent>
 
@@ -16,18 +16,17 @@
 
   <name>DP2 Braille Modules :: mod-celia</name>
   
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.daisy.pipeline.modules</groupId>
-        <artifactId>scripts-bom</artifactId>
-        <version>1.11.1-SNAPSHOT</version>
-        <scope>import</scope>
-        <type>pom</type>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-  
+  <properties>
+    <expose-services>
+      fi.celia.pipeline.braille.impl.CeliaTranslator$Provider,
+      fi.celia.pipeline.braille.impl.TablePath,
+      fi.celia.pipeline.braille.impl.LibhyphenTablePath,
+      fi.celia.pipeline.braille.impl.TexHyphenatorTablePath,
+      org.daisy.pipeline.modules.impl.Module_mod_celia,
+      org.daisy.pipeline.script.impl.XProcScript_celia_dtbook_to_pef
+    </expose-services>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
@@ -35,19 +34,19 @@
     </dependency>
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
-      <artifactId>css-core</artifactId>
+      <artifactId>css-utils</artifactId>
     </dependency>
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
-      <artifactId>liblouis-core</artifactId>
+      <artifactId>liblouis-utils</artifactId>
     </dependency>
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
-      <artifactId>libhyphen-core</artifactId>
+      <artifactId>libhyphen-utils</artifactId>
     </dependency>
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
-      <artifactId>texhyph-core</artifactId>
+      <artifactId>texhyph-utils</artifactId>
     </dependency>
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
@@ -66,44 +65,29 @@
       <artifactId>css-utils</artifactId>
       <scope>runtime</scope>
     </dependency>
-    <dependency>
-      <groupId>org.daisy.pipeline.modules.braille</groupId>
-      <artifactId>liblouis-utils</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.daisy.pipeline.modules.braille</groupId>
-      <artifactId>liblouis-tables</artifactId>
-      <scope>runtime</scope>
-    </dependency>
     <!--
         test dependencies
     -->
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
-      <artifactId>libhyphen-native</artifactId>
+      <artifactId>dotify-utils</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.daisy.pipeline.modules.braille</groupId>
+      <artifactId>libhyphen-utils</artifactId>
       <classifier>linux</classifier>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
-      <artifactId>liblouis-native</artifactId>
+      <artifactId>liblouis-utils</artifactId>
       <classifier>linux</classifier>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.daisy.pipeline.modules.braille</groupId>
-      <artifactId>dotify-formatter</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
       <artifactId>pef-utils</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.daisy.pipeline.build</groupId>
-      <artifactId>modules-test-helper</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -168,41 +152,6 @@
                 </concat>
               </target>
             </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.ops4j.pax.exam</groupId>
-        <artifactId>maven-paxexam-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>generate-depends-file</id>
-            <goals>
-              <goal>generate-depends-file</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <configuration>
-          <instructions>
-            <_dsannotations>
-              fi.celia.pipeline.braille.impl.CeliaTranslator$Provider,
-              fi.celia.pipeline.braille.impl.TablePath,
-              fi.celia.pipeline.braille.impl.LibhyphenTablePath,
-              fi.celia.pipeline.braille.impl.TexHyphenatorTablePath
-            </_dsannotations>
-          </instructions>
-        </configuration>
-        <executions>
-          <execution>
-            <id>bundle-before-test</id>
-            <phase>generate-test-resources</phase>
-            <goals>
-              <goal>bundle</goal>
-            </goals>
           </execution>
         </executions>
       </plugin>

@@ -6,17 +6,13 @@ public class Config {
 			"org.daisy.pipeline.modules.braille:common-utils:?",
 			"org.daisy.pipeline.modules.braille:css-utils:?",
 			"org.daisy.pipeline.modules.braille:liblouis-utils:?",
-			"org.daisy.pipeline.modules.braille:liblouis-tables:?",
-			"org.daisy.pipeline.modules.braille:liblouis-native:jar:" + thisPlatform() + ":?",
-			"org.daisy.pipeline.modules.braille:libhyphen-core:?",
-			"org.daisy.pipeline.modules.braille:libhyphen-native:jar:" + thisPlatform() + ":?",
-			"org.daisy.pipeline.modules.braille:texhyph-core:?",
+			"org.daisy.pipeline.modules.braille:liblouis-utils:jar:" + thisPlatform() + ":?",
+			"org.daisy.pipeline.modules.braille:libhyphen-utils:?",
+			"org.daisy.pipeline.modules.braille:libhyphen-utils:jar:" + thisPlatform() + ":?",
+			"org.daisy.pipeline.modules.braille:texhyph-utils:?",
 			"org.daisy.pipeline.modules.braille:pef-utils:?",
 			"org.daisy.pipeline.modules.braille:dotify-utils:?",
-			"org.daisy.pipeline.modules.braille:dotify-formatter:?",
 			"org.daisy.pipeline.modules.braille:dtbook-to-pef:?",
-			// FIXME: Dotify needs older version of jing
-			"org.daisy.libs:jing:20120724.0.0",
 		};
 	}
 }
